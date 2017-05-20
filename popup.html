@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Disco Enhancements by Traversys Limited</title>
+        <style>
+            div {
+              text-align: left;
+              font-family: sans-serif;
+              width: 1px;
+              background: #fff;
+            }
+    </style>
+    </head>
+    <body style="color: #414042">
+        <div style="width:300px; padding: 1px;">
+            <h2 style="margin: 0px; padding: 0px;">Disco Enhancements for </h2>
+            <h2 style="color:#f86e00;margin: 0px; padding: 0px;">BMC Discovery</h2>
+			<p>Changes selected will apply to all appliance tabs.</p>
+			<p>Changes may not take place until refresh.</p>
+            <form>
+                <label>
+                    <input style="outline:none;" type="checkbox" id="colorize-header" name="colorize-header" />
+                    <span style="position:relative; top:0px;">Colorize Headers</span>
+                </label><br>
+                <label>
+                    <input style="outline:none;" type="checkbox" id="tab-rename" name="tab-rename" />
+                    <span style="position:relative; top:0px;">Rename Tabs</span>
+                </label><br>
+                <!-- TODO: Option for search by keyword at top of lists-->
+            </form>
+            <h4 style="margin-bottom: 0px; padding-bottom: 0px;">Appliance Debug Mode:</h4>
+      	    <input type="button" style="margin-bottom: 15px;" id="setDebug">
+      	    <h3 style="display: inline-block; color:red; padding-left:10px" id="debugText"></h3>
+      	    <br>
+            <form>
+                <label>
+                    <input style="outline:none;" type="checkbox" id="hide-debug" name="hide-debug" />
+                    <span style="position:relative; top:0px;">Hide Debug</span>
+                </label><br>
+                <label>
+                    <input style="outline:none;" type="checkbox" id="hide-dash" name="hide-dash" />
+                    <span style="position:relative; top:0px;">Hide Dashboard</span>
+                </label><br>
+            </form>
+            <p>(C) 2017 Traversys Limited (<a href="https://www.traversys.io">www.traversys.io</a>)</p>
+        </div>
+
+        <script src="popup.js"></script>
+    </body>
+</html>

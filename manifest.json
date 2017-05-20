@@ -1,0 +1,38 @@
+{
+  "manifest_version": 2,
+
+  "name": "Disco Enhancements",
+  "description": "This exension Provides some simple enhancements to the BMC Discovery (ADDM) UI.",
+  "version": "1.0",
+
+  "icons": {
+    "128": "images/icon.png"
+  },
+
+  "permissions": [
+    "http://*/*",
+    "https://*/*",
+    "activeTab",
+    "storage"
+  ],
+
+  "background": {
+    "run_at" : "document_end",
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+
+   "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["content.js"]
+    }
+  ],
+
+  "page_action": {
+    "default_title": "Disco Enhancements",
+    "default_icon": "images/icon.png",
+    "default_popup": "popup.html"
+  }
+
+}
