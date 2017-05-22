@@ -11,5 +11,6 @@ Supports version 10.2+ of BMC ADDM/Discovery
 * Automatically switch between debug mode on/off
 * One-click hide debug output (with debug mode on)
 * Experimental: Add a generic search box to all pages
+* Experimental: Add 'refine results' bar to top of reports pages
 
 Contributions and Feedback welcome.

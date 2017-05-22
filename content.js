@@ -77,14 +77,34 @@ function genericQuery(){
   })
 };
 
+function refineResults(){
+    chrome.storage.sync.get("refine_results", function(data){
+		var refineTop = document.getElementById('discoRefineTop');
+        if (data["refine_results"] && !(refineTop)){
+			var formRefineResults = document.getElementById('refineResultsform');
+			var container = document.getElementById('searchInfo');
+			var newRefineTop = formRefineResults.cloneNode(true);
+			newRefineTop.setAttribute('id','discoRefineTop');
+			container.appendChild(newRefineTop);
+			container.style.cssText = "text-align:right;";
+			document.getElementById('resultsCaption').style.cssText = "padding-bottom:50px;";
+        } else if (!data["refine_results"] && refineTop) {
+			refineTop.remove();
+			document.getElementById('resultsCaption').style.cssText = null;
+        }
+    })
+};
+
 chrome.storage.onChanged.addListener(colorHeader);
 chrome.storage.onChanged.addListener(renameTab);
 chrome.storage.onChanged.addListener(hideDebug);
 chrome.storage.onChanged.addListener(hideDash);
 chrome.storage.onChanged.addListener(genericQuery);
+chrome.storage.onChanged.addListener(refineResults);
 // run once on page load
 colorHeader();
 renameTab();
 hideDebug();
 hideDash();
 genericQuery();
+refineResults();

@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function(){
     var hd = document.getElementById('hide-debug');
     var dh = document.getElementById('hide-dash');
     var gq = document.getElementById('generic-query');
+	var rr = document.getElementById('refine-top');
 
     // set the initial state of the checkboxes
     chrome.storage.sync.get("header_color", function(data){
@@ -46,6 +47,14 @@ document.addEventListener('DOMContentLoaded', function(){
                 gq.checked = false;
             }
           });
+	
+	chrome.storage.sync.get("refine_results", function(data){
+            if (data["refine_results"]){
+                rr.checked = true;
+            } else {
+                rr.checked = false;
+            }
+          });
 
     ch.addEventListener("change", function(){
         chrome.storage.sync.set({header_color: ch.checked});
@@ -65,6 +74,10 @@ document.addEventListener('DOMContentLoaded', function(){
 
     gq.addEventListener("change", function(){
         chrome.storage.sync.set({generic_query: gq.checked});
+    });
+	
+	rr.addEventListener("change", function(){
+        chrome.storage.sync.set({refine_results: rr.checked});
     });
 
     chrome.tabs.executeScript(null, {
