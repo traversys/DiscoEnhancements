@@ -1,9 +1,12 @@
 // Reset on installation
 chrome.runtime.onInstalled.addListener(function() {
-    chrome.storage.sync.set({header_color: false});
-    chrome.storage.sync.set({tab_name: false});
+    chrome.storage.sync.set({header_color: true});
+    chrome.storage.sync.set({tab_name: true});
     chrome.storage.sync.set({debug_text: false});
     chrome.storage.sync.set({hide_debug: false});
+    chrome.storage.sync.set({generic_query: true});
+    chrome.storage.sync.set({is_disco: false});
+	chrome.storage.sync.set({refine_results: true});
 });
 
 // Listen for tab update
@@ -18,6 +21,9 @@ chrome.tabs.onUpdated.addListener(function(id, info, tab){
         // productTitle is a bit generic so do a check for "Discovery" in title text
         if ( isDisco.includes("Discovery") ) {
             chrome.pageAction.show(tab.id);
+            chrome.storage.sync.set({is_disco: true});
+        } else {
+          chrome.storage.sync.set({is_disco: false});
         }
     })
 });

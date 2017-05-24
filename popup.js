@@ -4,8 +4,10 @@ document.addEventListener('DOMContentLoaded', function(){
     var rt = document.getElementById('tab-rename');
     var hd = document.getElementById('hide-debug');
     var dh = document.getElementById('hide-dash');
+    var gq = document.getElementById('generic-query');
+	var rr = document.getElementById('refine-top');
 
-    // set the initial state of the checkbox
+    // set the initial state of the checkboxes
     chrome.storage.sync.get("header_color", function(data){
         if (data["header_color"]){
             ch.checked = true;
@@ -38,6 +40,22 @@ document.addEventListener('DOMContentLoaded', function(){
           }
         });
 
+        chrome.storage.sync.get("generic_query", function(data){
+            if (data["generic_query"]){
+                gq.checked = true;
+            } else {
+                gq.checked = false;
+            }
+          });
+	
+	chrome.storage.sync.get("refine_results", function(data){
+            if (data["refine_results"]){
+                rr.checked = true;
+            } else {
+                rr.checked = false;
+            }
+          });
+
     ch.addEventListener("change", function(){
         chrome.storage.sync.set({header_color: ch.checked});
     });
@@ -52,6 +70,14 @@ document.addEventListener('DOMContentLoaded', function(){
 
     dh.addEventListener("change", function(){
         chrome.storage.sync.set({hide_dash: dh.checked});
+    });
+
+    gq.addEventListener("change", function(){
+        chrome.storage.sync.set({generic_query: gq.checked});
+    });
+	
+	rr.addEventListener("change", function(){
+        chrome.storage.sync.set({refine_results: rr.checked});
     });
 
     chrome.tabs.executeScript(null, {
