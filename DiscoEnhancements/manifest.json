@@ -3,7 +3,7 @@
 
   "name": "Disco Enhancements for BMC Discovery",
   "description": "This exension Provides some simple enhancements to the BMC Discovery (ADDM) UI.",
-  "version": "1.1",
+  "version": "1.2",
   "author": "Wes Fitzpatrick (Traversys)",
   "short_name": "Disco Enhancements",
 
