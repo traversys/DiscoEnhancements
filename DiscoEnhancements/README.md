@@ -1,5 +1,5 @@
 # DiscoEnhancements for BMC Discovery
-## Version 1.1
+## Version 1.2
 ### traversys.io
 
 This modest extension aims to bring some useful enhancements to the Discovery UI
