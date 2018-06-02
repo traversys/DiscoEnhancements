@@ -1,15 +1,16 @@
 # DiscoEnhancements for BMC Discovery
-## Version 1.3
+## Version 1.4
 ### traversys.io
 
 This modest extension aims to bring some useful enhancements to the Discovery UI
 
-Supports version 10.2+ of BMC ADDM/Discovery
+Supports version 11+ of BMC ADDM/Discovery
 
 ## New
-* Updated for v11.2 of BMC Discovery
-* Generic Query has been relocated to top of content page
-* Verified working on Firefox (unsigned)
+* Tested on v11.3 of BMC Discovery.
+* Generic Query now floats with top bar + some minor improvements to layout so that it's not squishing on elements.
+* Generic Query will now automatically fill in the 'raw query' string of a generated report.
+* Have added an experimental feature that improves TPL file editing in appliance.
 
 ## Features
 
@@ -17,7 +18,8 @@ Supports version 10.2+ of BMC ADDM/Discovery
 * Sets the tab title to the name of the appliance automatically - easier to work with multiple tabs/appliances
 * Automatically switch between debug mode on/off
 * One-click hide debug output (with debug mode on)
-* Add a generic search box to all pages
-* Add 'refine results' bar to top of reports pages
+* Adds a global generic search query box
+* Adds 'refine results' bar to top of reports pages
+* Converts TPL module page into a lightweight editor - does not require page reload or 'edit' button!
 
 Contributions and Feedback welcome.
