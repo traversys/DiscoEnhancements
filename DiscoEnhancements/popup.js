@@ -1,15 +1,16 @@
 document.addEventListener('DOMContentLoaded', function(){
 
     var ch = document.getElementById('colorize-header');
+    var sh = document.getElementById('subtle-header');
     var rt = document.getElementById('tab-rename');
     var hd = document.getElementById('hide-debug');
     var dh = document.getElementById('hide-dash');
     var gq = document.getElementById('generic-query');
 	  var rr = document.getElementById('refine-top');
-    var et = document.getElementById('experiment-tpl');
+    var et = document.getElementById('tpl-editor');
 
     // set the initial state of the checkboxes
-    chrome.storage.sync.get("header_color", function(data){
+    chrome.storage.local.get("header_color", function(data){
         if (data["header_color"]){
             ch.checked = true;
         } else {
@@ -17,7 +18,15 @@ document.addEventListener('DOMContentLoaded', function(){
         }
       });
 
-      chrome.storage.sync.get("tab_name", function(data){
+      chrome.storage.local.get("subtle_header", function(data){
+          if (data["subtle_header"]){
+              sh.checked = true;
+          } else {
+              sh.checked = false;
+          }
+        });
+
+      chrome.storage.local.get("tab_name", function(data){
           if (data["tab_name"]){
               rt.checked = true;
           } else {
@@ -25,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function(){
           }
         });
 
-      chrome.storage.sync.get("hide_debug", function(data){
+      chrome.storage.local.get("hide_debug", function(data){
           if (data["hide_debug"]){
               hd.checked = true;
           } else {
@@ -33,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function(){
           }
         });
 
-      chrome.storage.sync.get("hide_dash", function(data){
+      chrome.storage.local.get("hide_dash", function(data){
           if (data["hide_dash"]){
               dh.checked = true;
           } else {
@@ -41,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function(){
           }
         });
 
-        chrome.storage.sync.get("generic_query", function(data){
+        chrome.storage.local.get("generic_query", function(data){
             if (data["generic_query"]){
                 gq.checked = true;
             } else {
@@ -49,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function(){
             }
           });
 
-	chrome.storage.sync.get("refine_results", function(data){
+	chrome.storage.local.get("refine_results", function(data){
             if (data["refine_results"]){
                 rr.checked = true;
             } else {
@@ -57,8 +66,8 @@ document.addEventListener('DOMContentLoaded', function(){
             }
           });
 
-  chrome.storage.sync.get("experiment_tpl", function(data){
-            if (data["experiment_tpl"]){
+  chrome.storage.local.get("tpl_editor", function(data){
+            if (data["tpl_editor"]){
                 et.checked = true;
             } else {
                 et.checked = false;
@@ -66,31 +75,35 @@ document.addEventListener('DOMContentLoaded', function(){
           });
 
     ch.addEventListener("change", function(){
-        chrome.storage.sync.set({header_color: ch.checked});
+        chrome.storage.local.set({header_color: ch.checked});
+    });
+
+    sh.addEventListener("change", function(){
+        chrome.storage.local.set({subtle_header: sh.checked});
     });
 
     rt.addEventListener("change", function(){
-        chrome.storage.sync.set({tab_name: rt.checked});
+        chrome.storage.local.set({tab_name: rt.checked});
     });
 
     hd.addEventListener("change", function(){
-        chrome.storage.sync.set({hide_debug: hd.checked});
+        chrome.storage.local.set({hide_debug: hd.checked});
     });
 
     dh.addEventListener("change", function(){
-        chrome.storage.sync.set({hide_dash: dh.checked});
+        chrome.storage.local.set({hide_dash: dh.checked});
     });
 
     gq.addEventListener("change", function(){
-        chrome.storage.sync.set({generic_query: gq.checked});
+        chrome.storage.local.set({generic_query: gq.checked});
     });
 
 	  rr.addEventListener("change", function(){
-        chrome.storage.sync.set({refine_results: rr.checked});
+        chrome.storage.local.set({refine_results: rr.checked});
     });
 
     et.addEventListener("change", function(){
-          chrome.storage.sync.set({experiment_tpl: et.checked});
+          chrome.storage.local.set({tpl_editor: et.checked});
     });
 
     chrome.tabs.executeScript(null, {
@@ -99,18 +112,18 @@ document.addEventListener('DOMContentLoaded', function(){
         var isDebug = result[0];
 
         if ( isDebug ) {
-            chrome.storage.sync.set({debug_text: true});
+            chrome.storage.local.set({debug_text: true});
             document.getElementById('debugText').innerHTML = "Debug is ON";
             document.getElementById('setDebug').value= "Turn Off Debug";
         } else {
-            chrome.storage.sync.set({debug_text: false});
+            chrome.storage.local.set({debug_text: false});
             document.getElementById('debugText').innerHTML = null;
             document.getElementById('setDebug').value= "Turn On Debug";
     }
     })
 
     document.getElementById("setDebug").onclick = function() {
-      chrome.storage.sync.get("debug_text", function(data){
+      chrome.storage.local.get("debug_text", function(data){
         chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
           var currentURL = tabs[0].url;
           var cleanURL = currentURL.split("&")[0];
