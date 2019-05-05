@@ -1,5 +1,5 @@
 # DiscoEnhancements for BMC Discovery
-## Version 1.4
+## Version 1.5
 ### traversys.io
 
 This modest extension aims to bring some useful enhancements to the Discovery UI
@@ -7,10 +7,11 @@ This modest extension aims to bring some useful enhancements to the Discovery UI
 Supports version 11+ of BMC ADDM/Discovery
 
 ## New
-* Tested on v11.3 of BMC Discovery.
-* Generic Query now floats with top bar + some minor improvements to layout so that it's not squishing on elements.
-* Generic Query will now automatically fill in the 'raw query' string of a generated report.
-* Have added an experimental feature that improves TPL file editing in appliance.
+* Updated RAW editor to allow for copy text and quick edit.
+* Global Dashboard dropdown.
+* CMDB Sync and Taxonomy tool icons added to navigation bar.
+* New (subtler) header option.
+* Various bug fixes.
 
 ## Features
 
