@@ -5,7 +5,8 @@ document.addEventListener('DOMContentLoaded', function(){
     var hd = document.getElementById('hide-debug');
     var dh = document.getElementById('hide-dash');
     var gq = document.getElementById('generic-query');
-	var rr = document.getElementById('refine-top');
+	  var rr = document.getElementById('refine-top');
+    var et = document.getElementById('experiment-tpl');
 
     // set the initial state of the checkboxes
     chrome.storage.sync.get("header_color", function(data){
@@ -47,12 +48,20 @@ document.addEventListener('DOMContentLoaded', function(){
                 gq.checked = false;
             }
           });
-	
+
 	chrome.storage.sync.get("refine_results", function(data){
             if (data["refine_results"]){
                 rr.checked = true;
             } else {
                 rr.checked = false;
+            }
+          });
+
+  chrome.storage.sync.get("experiment_tpl", function(data){
+            if (data["experiment_tpl"]){
+                et.checked = true;
+            } else {
+                et.checked = false;
             }
           });
 
@@ -75,9 +84,13 @@ document.addEventListener('DOMContentLoaded', function(){
     gq.addEventListener("change", function(){
         chrome.storage.sync.set({generic_query: gq.checked});
     });
-	
-	rr.addEventListener("change", function(){
+
+	  rr.addEventListener("change", function(){
         chrome.storage.sync.set({refine_results: rr.checked});
+    });
+
+    et.addEventListener("change", function(){
+          chrome.storage.sync.set({experiment_tpl: et.checked});
     });
 
     chrome.tabs.executeScript(null, {

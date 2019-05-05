@@ -2,9 +2,9 @@
   "manifest_version": 2,
 
   "name": "Disco Enhancements for BMC Discovery",
-  "description": "This exension Provides some simple enhancements to the BMC Discovery (ADDM) UI.",
-  "version": "1.2",
-  "author": "Wes Fitzpatrick (Traversys)",
+  "description": "This exension Provides some simple enhancements to the BMC Discovery UI.",
+  "version": "1.4",
+  "author": "Wes Moskal-Fitzpatrick (Traversys)",
   "short_name": "Disco Enhancements",
 
   "icons": {
@@ -39,6 +39,12 @@
     "default_title": "Disco Enhancements",
     "default_icon": "images/icon.png",
     "default_popup": "popup.html"
+  },
+
+  "applications": {
+    "gecko": {
+      "id": "team@traverys.io"
+    }
   }
 
 }

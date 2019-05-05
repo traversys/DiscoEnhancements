@@ -6,7 +6,8 @@ chrome.runtime.onInstalled.addListener(function() {
     chrome.storage.sync.set({hide_debug: false});
     chrome.storage.sync.set({generic_query: true});
     chrome.storage.sync.set({is_disco: false});
-	chrome.storage.sync.set({refine_results: true});
+    chrome.storage.sync.set({refine_results: true});
+    chrome.storage.sync.set({experiment_tpl: false});
 });
 
 // Listen for tab update
