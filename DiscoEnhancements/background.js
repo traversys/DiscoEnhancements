@@ -1,5 +1,6 @@
 // Reset on installation
 chrome.runtime.onInstalled.addListener(function() {
+<<<<<<< Updated upstream
     chrome.storage.local.set({header_color: false});
     chrome.storage.local.set({subtle_header: true});
     chrome.storage.local.set({tab_name: true});
@@ -9,6 +10,16 @@ chrome.runtime.onInstalled.addListener(function() {
     chrome.storage.local.set({is_disco: false});
     chrome.storage.local.set({refine_results: true});
     chrome.storage.local.set({tpl_editor: true});
+=======
+    chrome.storage.sync.set({header_color: true});
+    chrome.storage.sync.set({tab_name: true});
+    chrome.storage.sync.set({debug_text: false});
+    chrome.storage.sync.set({hide_debug: false});
+    chrome.storage.sync.set({generic_query: true});
+    chrome.storage.sync.set({is_disco: false});
+    chrome.storage.sync.set({refine_results: true});
+    chrome.storage.sync.set({experiment_tpl: true});
+>>>>>>> Stashed changes
 });
 
 // Listen for tab update

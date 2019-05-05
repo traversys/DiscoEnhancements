@@ -1,0 +1,20 @@
+pre .tplCode{
+     counter-reset: line;
+		 width: em(440);
+	   margin: 4em auto;
+	   /*padding: 0.5em;
+	   border-radius: .25em;*/
+	}
+
+.tplCode span.linenumber {
+     counter-increment: line;
+		 text-align: right;
+}
+
+.tplCode span.linenumber:before {
+     content: counter(line);
+		 display: inline-block;
+		 border-right: 1px solid #ddd;
+		 padding: 0 .5em;
+		 width: 2em; /* Fixed width */
+}

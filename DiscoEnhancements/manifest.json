@@ -2,7 +2,11 @@
   "manifest_version": 2,
 
   "name": "Disco Enhancements for BMC Discovery",
+<<<<<<< Updated upstream
   "description": "This exension Provides some simple enhancements to the BMC Discovery UI.",
+=======
+  "description": "This exension Provides some powerful enhancements to the BMC Discovery UI.",
+>>>>>>> Stashed changes
   "version": "1.5",
   "author": "Wes Moskal-Fitzpatrick (Traversys)",
   "short_name": "Disco Enhancements",
@@ -26,13 +30,14 @@
 
    "content_scripts": [
     {
-      "matches": ["http://*/*", "https://*/*"],
+      "matches": ["http://*/ui/*", "https://*/ui/*"],
       "js": ["content.js"]
     }
   ],
 
   "web_accessible_resources": [
-    "genericquery.html"
+    "genericquery.html",
+    "lines.css"
 ],
 
   "page_action": {

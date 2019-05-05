@@ -35,6 +35,7 @@ function colorHeader(){
     });
 };
 
+<<<<<<< Updated upstream
 function tplEditor(){
     chrome.storage.local.get("tpl_editor", function(data){
         // Remove Line Numbers
@@ -77,6 +78,61 @@ function tplEditor(){
               }
               tpl_code = module_code.innerText;
               module_code.remove();
+=======
+function experimentTPL(){
+  chrome.storage.sync.get("is_disco", function(disco){
+    if (disco["is_disco"]){
+      chrome.storage.sync.get("experiment_tpl", function(data){
+        if (data["experiment_tpl"]){
+
+          var pre_tpl = document.getElementById('moduleCode');
+          var button_bar = document.getElementsByClassName('buttonBar rightAlign')[0];
+
+          // Remove BMC Edit Button
+          document.getElementsByClassName("editModuleButton")[0].remove();
+
+          // Add Edit Button
+          var edit_butt = document.createElement("input");
+          //edit_butt.innerHTML = "Edit TPL";
+          edit_butt.setAttribute('type', 'submit');
+          edit_butt.setAttribute('id', 'trvs_edit');
+          edit_butt.setAttribute('value', 'Edit TPL');
+          button_bar.appendChild(edit_butt);
+          edit_butt.addEventListener ("click", function() {
+
+            // remove line numbers
+            var line_nos = document.getElementById('moduleCode').getElementsByClassName('linenumber');
+            var i;
+            for (i=0;i<line_nos.length;i++) {
+              line_nos[i].innerHTML = '&nbsp;';
+            }
+
+            // Make pre tags editable
+            pre_tpl.setAttribute("contenteditable",true);
+            pre_tpl.style.cssText = "background:#ffffff; border:3px solid #89c341;";
+
+            // Line numbers CSS
+            //chrome.tabs.insertCSS(null, {file: "lines.css"});
+            var link = document.createElement("link");
+            link.href = chrome.extension.getURL("lines.css");
+            link.type = "text/css";
+            link.rel = "stylesheet";
+            document.getElementsByTagName("head")[0].appendChild(link);
+
+            // Modify Button Bar
+            document.getElementById("trvs_edit").remove();
+            button_bar.innerHTML += '<input type="submit" name="reset" value="Reset Changes" onclick="location.reload();">';
+
+            // Convert code to text
+            var raw_butt = document.createElement("button");
+            raw_butt.innerHTML = "Edit Raw";
+            raw_butt.setAttribute('type', 'button');
+            raw_butt.setAttribute('id', 'trvs_raw');
+            button_bar.appendChild(raw_butt);
+            raw_butt.addEventListener ("click", function() {
+              tpl_code = document.getElementById('moduleCode').innerText;
+              document.getElementById('moduleCode').remove();
+>>>>>>> Stashed changes
               var tpl_window = document.getElementsByClassName('patternContent clearFloatsBefore')[0];
               tpl_window.innerHTML += '<textarea name="tplCode" rows="50" class="tplCode" id="moduleCode"></textarea>';
               module_code = document.getElementById('moduleCode');
@@ -85,8 +141,27 @@ function tplEditor(){
               button_bar.appendChild(quick_copy);
               quick_copy.disabled = false;
             });
+
+            var apply_butt = document.createElement("input");
+            //edit_butt.innerHTML = "Edit TPL";
+            apply_butt.setAttribute('type', 'submit');
+            apply_butt.setAttribute('id', 'trvs_apply');
+            apply_butt.setAttribute('value', 'Apply Changes');
+            button_bar.appendChild(apply_butt);
+            apply_butt.addEventListener ("click", function() {
+              // Convert to Raw and Apply
+              button_bar.innerHTML += '<input type="submit" name="upload" id="trvs_up" value="Applying...">';
+              document.getElementById("trvs_raw").click();
+              document.getElementById("trvs_up").click();
+            });
+
+          });
+        } else if (!data["experiment_tpl"]) {
+          button_bar.innerHTML = '<input type="submit" class="editModuleButton" name="edit" value="Edit Module">';
         }
-    });
+      })
+    }
+  })
 };
 
 function renameTab(){
