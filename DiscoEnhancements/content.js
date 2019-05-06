@@ -2,25 +2,6 @@ function subtleHeader(){
     chrome.storage.local.get("subtle_header", function(data){
         var discoHeader113 = document.getElementById("pageHeader");
         var dashDiv = document.getElementById('content1');
-        if (data["subtle_header"]){
-            var discoColor = window.getComputedStyle(document.getElementById("versionInfo")).getPropertyValue("background-image");
-            discoHeader113.style.borderImage = discoColor + "10 round";
-            discoHeader113.style.borderBottom = "4px solid";
-            discoHeader113.style.height = "unset";
-            dashDiv.style.paddingTop = "90px";
-            document.getElementById("versionInfo").style.boxShadow = "none";
-            document.getElementById("versionInfo").style.padding = "5px 10px";
-            document.getElementById("applianceStateContainer").style.fontSize = "1.2rem";
-            document.getElementById("applianceStateContainer").style.top = "95px";
-
-        } else {
-            discoHeader113.style.borderImage = null;
-            discoHeader113.style.borderBottom = "2px solid #f86e00";
-            discoHeader113.style.height = "50px";
-            document.getElementById("versionInfo").style.padding = "1px 10px";
-            document.getElementById("applianceStateContainer").style.fontSize = ".84rem";
-            document.getElementById("applianceStateContainer").style.top = "50px";
-        }
     });
 };
 
@@ -133,14 +114,12 @@ function genericQuery(){
   chrome.storage.local.get("is_disco", function(disco){
     if (disco["is_disco"]){
       chrome.storage.local.get("generic_query", function(data){
-        //var pageDiv = document.getElementById("pageHeader");
-        //var pageDiv = document.getElementById("pageMainTitle");
         var pageDiv = document.getElementById("pageHeader");
         var discoBox = document.getElementById('DiscoEx_GQBox');
         var content = document.getElementsByClassName("subContent");
         var v112_title = document.getElementsByClassName("searchTitle");
-        //var raw_query = document.getElementById("rawQueryHolder");
-        //var startStopSpan = document.getElementById("start_stop_span");
+        var discoHeader113 = document.getElementById("pageHeader");
+        var dashDiv = document.getElementById('content1');
         if (data["generic_query"] && !(discoBox)) {
           var xhttp = new XMLHttpRequest();
           xhttp.open("GET", chrome.runtime.getURL("genericquery.html"), true);
@@ -177,9 +156,23 @@ function genericQuery(){
               })
             }
           }
+          var discoColor = window.getComputedStyle(document.getElementById("versionInfo")).getPropertyValue("background-image");
+          discoHeader113.style.borderImage = discoColor + "10 round";
+          discoHeader113.style.borderBottom = "4px solid";
+          discoHeader113.style.height = "unset";
+          dashDiv.style.paddingTop = "90px";
+          document.getElementById("versionInfo").style.boxShadow = "none";
+          document.getElementById("versionInfo").style.padding = "5px 10px";
+          document.getElementById("applianceStateContainer").style.fontSize = "1.2rem";
+          document.getElementById("applianceStateContainer").style.top = "95px";
         } else if (!data["generic_query"] && discoBox) {
             discoBox.remove();
-            //startStopSpan.style.cssText = null;
+            discoHeader113.style.borderImage = null;
+            discoHeader113.style.borderBottom = "2px solid #f86e00";
+            discoHeader113.style.height = "50px";
+            document.getElementById("versionInfo").style.padding = "1px 10px";
+            document.getElementById("applianceStateContainer").style.fontSize = ".84rem";
+            document.getElementById("applianceStateContainer").style.top = "50px";
         }
       })
     }
@@ -243,40 +236,6 @@ function addDash(){
       }
     }
   })
-};
-
-function addTools(){
-  // Taxomony Link
-  var sideBar = document.getElementById("sideBarHolder");
-  var link = document.createElement('a');
-  var img = document.createElement('img');
-  img.setAttribute('src', '/styles/default/images/model/png/normal/taxonomy_32.png');
-  img.setAttribute('width','24');
-  img.setAttribute('height','24');
-  img.setAttribute('style', '-webkit-filter:brightness(100)');
-  link.appendChild(img);
-  link.title = "View Taxonomy";
-  link.alt = "View Taxonomy";
-  link.id = "imageForSetupModelTaxonomy";
-  link.style.background = null;
-  //link.href = window.location.protocol + "//" + window.location.host + "/ui/SetupModelTaxonomy";
-  link.href = "/ui/SetupModelTaxonomy";
-  sideBar.insertBefore(link, sideBar.firstChild);
-
-  // CMDB Sync
-  var link = document.createElement('a');
-  var img = document.createElement('img');
-  img.setAttribute('src', '/styles/default/images/integrations/png/normal/cmdb_export_32.png');
-  img.setAttribute('width','24');
-  img.setAttribute('height','24');
-  img.setAttribute('style', '-webkit-filter:brightness(100);padding-right:10px');
-  link.appendChild(img);
-  link.title = "Manage CMDB Sync";
-  link.alt = "Manage CMDB Sync";
-  link.id = "imageForSetupSyncTargetOverview";
-  link.style.background = null;
-  link.href = "/ui/SetupSyncTargetOverview";
-  sideBar.insertBefore(link, sideBar.firstChild);
 };
 
 chrome.storage.onChanged.addListener(colorHeader);

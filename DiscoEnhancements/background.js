@@ -1,7 +1,7 @@
 // Reset on installation
 chrome.runtime.onInstalled.addListener(function() {
     chrome.storage.local.set({header_color: false});
-    chrome.storage.local.set({subtle_header: true});
+    chrome.storage.local.set({subtle_header: false});
     chrome.storage.local.set({tab_name: true});
     chrome.storage.local.set({debug_text: false});
     chrome.storage.local.set({hide_debug: true});
