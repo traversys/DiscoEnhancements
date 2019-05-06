@@ -2,7 +2,7 @@
   "manifest_version": 2,
 
   "name": "Disco Enhancements for BMC Discovery",
-  "description": "This exension Provides some simple enhancements to the BMC Discovery UI.",
+  "description": "This exension provides some powerful enhancements to the BMC Discovery UI.",
   "version": "1.5",
   "author": "Wes Moskal-Fitzpatrick (Traversys)",
   "short_name": "Disco Enhancements",
