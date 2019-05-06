@@ -10,8 +10,9 @@ Supports version 11+ of BMC ADDM/Discovery
 * Updated RAW editor to allow for copy text and quick edit.
 * Global Dashboard dropdown.
 * CMDB Sync and Taxonomy tool icons added to navigation bar.
-* New (subtler) header option.
+* New more polished header option.
 * Various bug fixes.
+* Search bar now stores last query automatically.
 
 ## Features
 
