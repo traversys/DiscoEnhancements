@@ -1,24 +1,31 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
 
   "name": "Disco Enhancements for BMC Discovery (DEV)",
   "description": "This exension provides some powerful enhancements to the BMC Discovery UI.",
   "version": "1.6",
+  "applications": {
+    "gecko": { "id": "discoenhancements@example.com" }
+  },
   "author": "Wes Moskal-Fitzpatrick (Traversys)",
   "short_name": "Disco Enhancements",
 
   "icons": {
-    "128": "images/icon.png"
+    "128": "images/icon128.png"
   },
 
   "permissions": [
     "*://*/ui/*",
     "activeTab",
-    "storage"
+    "storage",
+    "scripting"
+  ],
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
   ],
 
   "background": {
-    "run_at": "document_end",
     "scripts": ["background.js"],
     "persistent": false
   },
@@ -32,9 +39,13 @@
     "genericquery.html"
   ],
 
-  "page_action": {
+  "action": {
     "default_title": "Disco Enhancements",
-    "default_icon": "images/icon.png",
+    "default_icon": {
+      "16": "images/icon.png",
+      "48": "images/icon.png",
+      "128": "images/icon128.png"
+    },
     "default_popup": "popup.html"
   }
 
