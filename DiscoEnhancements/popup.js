@@ -137,24 +137,27 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  chrome.tabs.executeScript(null, {
-    "code": "document.getElementById('debug');"
-  }, function(result) {
-    var isDebug = result[0];
+  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+    chrome.scripting.executeScript({
+      target: { tabId: tabs[0].id },
+      func: function() { return document.getElementById('debug'); }
+    }, function(result) {
+      var isDebug = result && result[0] ? result[0].result : null;
 
-    if (isDebug) {
-      chrome.storage.local.set({
-        debug_text: true
-      });
-      document.getElementById('debugText').innerHTML = "Debug is ON";
-      document.getElementById('setDebug').value = "Turn Off Debug";
-    } else {
-      chrome.storage.local.set({
-        debug_text: false
-      });
-      document.getElementById('debugText').innerHTML = null;
-      document.getElementById('setDebug').value = "Turn On Debug";
-    }
+      if (isDebug) {
+        chrome.storage.local.set({
+          debug_text: true
+        });
+        document.getElementById('debugText').innerHTML = "Debug is ON";
+        document.getElementById('setDebug').value = "Turn Off Debug";
+      } else {
+        chrome.storage.local.set({
+          debug_text: false
+        });
+        document.getElementById('debugText').innerHTML = null;
+        document.getElementById('setDebug').value = "Turn On Debug";
+      }
+    });
   });
 
   document.getElementById("setDebug").onclick = function() {
