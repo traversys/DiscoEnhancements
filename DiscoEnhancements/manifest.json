@@ -2,7 +2,7 @@
   "manifest_version": 3,
 
   "name": "Disco Enhancements for BMC Discovery (DEV)",
-  "description": "This exension provides some powerful enhancements to the BMC Discovery UI.",
+  "description": "This extension provides some powerful enhancements to the BMC Discovery UI.",
   "version": "1.6",
   "applications": {
     "gecko": { "id": "discoenhancements@example.com" }
