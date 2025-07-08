@@ -214,11 +214,11 @@ function refineResults() {
         newRefineTop.setAttribute('id', 'discoRefineTop');
         container.appendChild(newRefineTop);
         container.style.cssText = "text-align:right; float:none;";
-        var resultsTable = document.getElementsByClassName('actionCaption')[0];
-        if (!resultsTable) {
-          var resultsTable = document.getElementById('resultsCaption');
+        let resultsTable = document.querySelector('.actionCaption') ||
+                           document.getElementById('resultsCaption');
+        if (resultsTable) {
+          resultsTable.style.cssText = "padding-bottom: 50px;";
         }
-        resultsTable.style.cssText = "padding-bottom: 50px;";
       }
     } else if (!data["refine_results"] && refineTop) {
       refineTop.remove();
