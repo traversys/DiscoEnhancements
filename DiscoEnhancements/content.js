@@ -45,8 +45,10 @@ function tplEditor() {
       //pre_tpl.insertAdjacentHTML('beforebegin','<p>TPL Editor is ON.</p>');
 
       // Add buttons
-      button_bar = document.getElementsByClassName('buttonBar rightAlign')[0];
-      edit_raw = document.getElementsByClassName("editModuleButton")[0];
+      let button_bar = document.getElementsByClassName('buttonBar rightAlign')[0];
+      let edit_raw = document.getElementsByClassName("editModuleButton")[0];
+      let module_code;
+      let tpl_code;
 
       if (button_bar && edit_raw) {
         // Convert code to text
@@ -136,8 +138,8 @@ function taxonomyAttrs() {
         tables[i].style.tableLayout = 'unset';
       }
       for (i = 0; i < attrs.length; i++) {
-        tax_attr = attrs[i].title.match(/\[(.*)\]/)[1];
-        ui_attr = attrs[i].innerText
+        let tax_attr = attrs[i].title.match(/\[(.*)\]/)[1];
+        let ui_attr = attrs[i].innerText
         attrs[i].innerText = `${tax_attr} (${ui_attr})`;
       }
     }
@@ -159,6 +161,8 @@ function genericQuery() {
           xhttp.onreadystatechange = processRequest;
 
           function processRequest() {
+            let stopScan;
+            let input_query;
             if (xhttp.readyState == 4 && xhttp.status == 200) {
               pageDiv.insertAdjacentHTML('beforeend', xhttp.responseText);
               // This is basically a backwards compatible fix for v10.2
