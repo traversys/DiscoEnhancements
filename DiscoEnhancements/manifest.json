@@ -15,6 +15,7 @@
   },
 
   "permissions": [
+    "*://*/ui/*",
     "activeTab",
     "storage",
     "scripting"
@@ -30,7 +31,7 @@
   },
 
   "content_scripts": [{
-    "matches": ["http://*/*", "https://*/*"],
+    "matches": ["*://*/ui/*"],
     "js": ["content.js"]
   }],
 
