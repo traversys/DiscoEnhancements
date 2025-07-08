@@ -19,7 +19,6 @@
   ],
 
   "background": {
-    "run_at": "document_end",
     "scripts": ["background.js"],
     "persistent": false
   },
